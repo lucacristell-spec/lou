@@ -150,3 +150,4 @@ The site uses ISR (Incremental Static Regeneration) with 60-second revalidation.
 - [ ] Set up AI-assisted content drafting pipeline
 - [ ] Add RSS feed
 - [ ] Add sitemap.xml generation
+// Rebuild: AI articles live
