@@ -144,7 +144,37 @@ export default async function ArticlePage({
         {articleData.body && typeof articleData.body === "string" ? (
           <div>
             {articleData.body.split("\n\n").map((paragraph: string, idx: number) => {
-              // Check if it's a header (surrounded by **)
+              // ── Infographic block ──────────────────────────────────────
+              if (paragraph.startsWith("%%INFOGRAPHIC%%")) {
+                const lines = paragraph
+                  .replace("%%INFOGRAPHIC%%", "")
+                  .replace("%%END%%", "")
+                  .trim()
+                  .split("\n")
+                  .filter(Boolean);
+                const stats = lines.map((l) => {
+                  const [label, value, desc] = l.split("|");
+                  return { label: label?.trim(), value: value?.trim(), desc: desc?.trim() };
+                });
+                return (
+                  <div key={idx} style={{ background: "linear-gradient(135deg, #1c1917 0%, #292524 100%)", borderRadius: "12px", padding: "2rem", margin: "2.5rem 0", color: "#fff" }}>
+                    <p style={{ fontFamily: "monospace", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#d97706", marginBottom: "1.5rem", fontWeight: "bold" }}>
+                      — By The Numbers
+                    </p>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.5rem" }}>
+                      {stats.map((s, i) => (
+                        <div key={i} style={{ borderLeft: "3px solid #d97706", paddingLeft: "1rem" }}>
+                          <div style={{ fontSize: "1.75rem", fontWeight: "900", color: "#fff", lineHeight: 1, marginBottom: "0.25rem" }}>{s.value}</div>
+                          <div style={{ fontSize: "0.7rem", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.1em", color: "#d97706", marginBottom: "0.4rem" }}>{s.label}</div>
+                          <div style={{ fontSize: "0.78rem", color: "#a8a29e", lineHeight: 1.5 }}>{s.desc}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              // ── Header ─────────────────────────────────────────────────
               if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
                 return (
                   <h3 key={idx} style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#000", marginBottom: "1rem", marginTop: "1.5rem" }}>
@@ -153,7 +183,7 @@ export default async function ArticlePage({
                 );
               }
               
-              // Regular paragraph
+              // ── Regular paragraph ──────────────────────────────────────
               return (
                 <p key={idx} style={{ fontSize: "1rem", lineHeight: "1.6", color: "#64748b", marginBottom: "1.5rem" }}>
                   {idx === 0 ? (

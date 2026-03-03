@@ -43,19 +43,34 @@ export default async function CategoryPage({
 }: {
   params: { id: string };
 }) {
-  // Use hardcoded articles for ai-tech
+  // Use hardcoded articles by category
+  const categoryMap: Record<string, string> = {
+    "ai-tech": "cat-ai",
+    "business": "cat-business",
+  };
   let articles;
-  if (params.id === "ai-tech") {
-    articles = featuredArticles;
+  if (categoryMap[params.id]) {
+    const catId = categoryMap[params.id];
+    articles = featuredArticles.filter((a: any) => a.category?._id === catId);
   } else {
     articles = await getArticlesByCategory(params.id);
   }
 
-  const [category, mustReads] = await Promise.all([
+  const hardcodedCategories: Record<string, any> = {
+    "ai-tech":   { name: "AI & Tech",  color: "#2563eb", description: "Stories in ai & tech" },
+    "business":  { name: "Business",   color: "#b45309", description: "Stories in business" },
+    "fashion":   { name: "Fashion",    color: "#be185d", description: "Stories in fashion" },
+    "food":      { name: "Food",       color: "#16a34a", description: "Stories in food" },
+    "lifestyle": { name: "Lifestyle",  color: "#7c3aed", description: "Stories in lifestyle" },
+    "news":      { name: "News",       color: "#dc2626", description: "Stories in news" },
+  };
+
+  const [sanityCategory, mustReads] = await Promise.all([
     getCategoryBySlug(params.id),
     getMustReadsByCategory(params.id),
   ]);
 
+  const category = sanityCategory || hardcodedCategories[params.id];
   if (!category) notFound();
 
   return (
