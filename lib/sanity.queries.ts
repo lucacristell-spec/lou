@@ -14,6 +14,8 @@ export const allArticlesQuery = groq`
     "category": category->{_id, name, slug, color},
     "author": author->{name, image},
     mainImage,
+    heroImage,
+    body,
     gradient
   }
 `;
@@ -30,6 +32,8 @@ export const featuredArticlesQuery = groq`
     "category": category->{_id, name, slug, color},
     "author": author->{name, image},
     mainImage,
+    heroImage,
+    body,
     gradient
   }
 `;
@@ -47,6 +51,7 @@ export const articleBySlugQuery = groq`
     "category": category->{_id, name, slug, color},
     "author": author->{name, image, bio},
     mainImage,
+    heroImage,
     gradient,
     "related": *[_type == "article" && category._ref == ^.category._ref && _id != ^._id] | order(publishedAt desc)[0...3] {
       _id,
@@ -56,6 +61,8 @@ export const articleBySlugQuery = groq`
       readTime,
       "category": category->{_id, name, slug, color},
       mainImage,
+      heroImage,
+      body,
       gradient
     }
   }
@@ -72,6 +79,8 @@ export const articlesByCategoryQuery = groq`
     "category": category->{_id, name, slug, color},
     "author": author->{name, image},
     mainImage,
+    heroImage,
+    body,
     gradient
   }
 `;
