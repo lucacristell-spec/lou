@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@600;700&family=JetBrains+Mono:wght@400&display=swap");
 
 /* ─── BASE ─── */
 ::selection {
@@ -20,46 +20,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── ANIMATIONS ─── */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes expandDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 400px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
+/* ─── MINIMAL ANIMATIONS FOR PERFORMANCE ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .animate-fade-in {
-  opacity: 0;
-  animation: fadeSlideIn 0.7s ease forwards;
+  animation: fadeIn 0.4s ease;
 }
 
-.animate-fade-in-d1 { animation-delay: 0.1s; }
-.animate-fade-in-d2 { animation-delay: 0.2s; }
-.animate-fade-in-d3 { animation-delay: 0.3s; }
-.animate-fade-in-d4 { animation-delay: 0.4s; }
-
-.animate-expand {
-  animation: expandDown 0.3s ease forwards;
-}
+.animate-fade-in-d1 { animation-delay: 0.05s; }
+.animate-fade-in-d2 { animation-delay: 0.1s; }
+.animate-fade-in-d3 { animation-delay: 0.15s; }
+.animate-fade-in-d4 { animation-delay: 0.2s; }
 
 /* ─── ARTICLE BODY TYPOGRAPHY ─── */
 .article-body p {
