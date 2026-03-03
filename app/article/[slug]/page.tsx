@@ -18,17 +18,17 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const article = await getArticleBySlug(params.slug);
-  if (!article) return { title: "Not Found" };
+  const articleData = await getArticleBySlug(params.slug);
+  if (!articleData) return { title: "Not Found" };
 
   return {
-    title: `${article.title} — The Lucid`,
-    description: article.excerpt,
+    title: `${articleData.title} — Lou Magazine`,
+    description: articleData.excerpt,
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
+      title: articleData.title,
+      description: articleData.excerpt,
       type: "article",
-      publishedTime: article.publishedAt,
+      publishedTime: articleData.publishedAt,
     },
   };
 }
@@ -61,20 +61,20 @@ export default async function ArticlePage({
 }: {
   params: { slug: string };
 }) {
-  const article = await getArticleBySlug(params.slug);
-  if (!article) notFound();
+  const articleData = await getArticleBySlug(params.slug);
+  if (!articleData) notFound();
 
-  const category = article.category;
-  const bgStyle = article.mainImage
+  const category = articleData.category;
+  const bgStyle = articleData.mainImage
     ? {
-        backgroundImage: `url(${urlFor(article.mainImage).width(1600).url()})`,
+        backgroundImage: `url(${urlFor(articleData.mainImage).width(1600).url()})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }
-    : { background: article.gradient || "linear-gradient(135deg, #1a1a2e, #0f3460)" };
+    : { background: articleData.gradient || "linear-gradient(135deg, #1a1a2e, #0f3460)" };
 
   return (
-    <article>
+    <section className="article-page">
       {/* Hero */}
       <div className="relative min-h-[380px] flex items-end overflow-hidden">
         <div className="absolute inset-0" style={bgStyle} />
@@ -91,32 +91,32 @@ export default async function ArticlePage({
             {category?.name}
           </div>
           <h1 className="font-display text-3xl md:text-5xl font-black text-white leading-tight mb-4">
-            {article.title}
+            {articleData.title}
           </h1>
           <p className="text-base text-white/65 leading-relaxed max-w-xl">
-            {article.excerpt}
+            {articleData.excerpt}
           </p>
           <div className="font-mono text-[10px] text-white/40 tracking-wider uppercase mt-5 flex gap-4 items-center">
-            <span>{article.author?.name || "The Lucid Editorial"}</span>
+            <span>{articleData.author?.name || "Lou Editorial"}</span>
             <span className="w-[3px] h-[3px] bg-white/30 rounded-full" />
             <span>
-              {new Date(article.publishedAt).toLocaleDateString("en-US", {
+              {new Date(articleData.publishedAt).toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
               })}
             </span>
             <span className="w-[3px] h-[3px] bg-white/30 rounded-full" />
-            <span>{article.readTime}</span>
+            <span>{articleData.readTime} min</span>
           </div>
         </div>
       </div>
 
       {/* Body */}
       <div className="article-body max-w-[680px] mx-auto px-6 py-12">
-        {article.body && typeof article.body === "string" ? (
+        {articleData.body && typeof articleData.body === "string" ? (
           <div className="prose prose-sm max-w-none">
-            {article.body.split("\n\n").map((paragraph: string, idx: number) => (
+            {articleData.body.split("\n\n").map((paragraph: string, idx: number) => (
               <div key={idx} className="mb-6">
                 {paragraph.startsWith("**") && paragraph.endsWith("**") ? (
                   <h3 className="text-lg font-bold text-ink mb-3">
@@ -139,12 +139,12 @@ export default async function ArticlePage({
               </div>
             ))}
           </div>
-        ) : article.body && Array.isArray(article.body) ? (
+        ) : articleData.body && Array.isArray(articleData.body) ? (
           <PortableText
-            value={article.body}
+            value={articleData.body}
             components={portableTextComponents}
           />
-        )}
+        ) : null}
       </div>
 
       {/* Divider */}
@@ -169,7 +169,7 @@ export default async function ArticlePage({
       </div>
 
       {/* Related Articles */}
-      {article.related?.length > 0 && (
+      {articleData.related?.length > 0 && (
         <div className="max-w-4xl mx-auto px-6 mt-12">
           <div className="flex items-center gap-5 pb-5">
             <h2 className="font-display text-sm font-bold tracking-widest uppercase whitespace-nowrap">
@@ -178,7 +178,7 @@ export default async function ArticlePage({
             <div className="flex-1 h-px bg-ink/10" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {article.related.map((rel: any, i: number) => (
+            {articleData.related.map((rel: any, i: number) => (
               <ArticleCard key={rel._id} article={rel} index={i} />
             ))}
           </div>
@@ -188,6 +188,6 @@ export default async function ArticlePage({
       <div className="mt-12">
         <Newsletter />
       </div>
-    </article>
+    </section>
   );
 }
