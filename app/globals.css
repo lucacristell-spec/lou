@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Libre+Franklin:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap");
 
 /* ─── BASE ─── */
 ::selection {
@@ -13,7 +13,10 @@
 body {
   background: #f5f0e8;
   color: #0a0a0a;
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -60,38 +63,43 @@ body {
 
 /* ─── ARTICLE BODY TYPOGRAPHY ─── */
 .article-body p {
-  font-family: "Playfair Display", serif;
+  font-family: "Lora", serif;
   font-size: 18px;
-  line-height: 1.75;
+  line-height: 1.8;
   color: #2a2a2a;
   margin-bottom: 28px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
 }
 
 .article-body p:first-child::first-letter {
-  font-family: "Playfair Display", serif;
-  font-size: 64px;
-  font-weight: 900;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 72px;
+  font-weight: 700;
   float: left;
-  line-height: 0.8;
-  margin-right: 10px;
-  margin-top: 6px;
+  line-height: 0.75;
+  margin-right: 12px;
+  margin-top: 4px;
   color: #c2402a;
 }
 
 .article-body h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 28px;
-  font-weight: 700;
-  margin-top: 40px;
-  margin-bottom: 16px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 48px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  color: #0a0a0a;
 }
 
 .article-body h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 22px;
+  font-family: "Lora", serif;
+  font-size: 24px;
   font-weight: 600;
-  margin-top: 32px;
-  margin-bottom: 12px;
+  margin-top: 36px;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
 }
 
 .article-body blockquote {

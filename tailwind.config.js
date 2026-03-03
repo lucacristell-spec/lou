@@ -18,8 +18,9 @@ module.exports = {
         "light-slate": "#8a8e94",
       },
       fontFamily: {
-        display: ['"Playfair Display"', "serif"],
-        body: ['"Libre Franklin"', "sans-serif"],
+        display: ['"Cormorant Garamond"', "serif"],
+        body: ['"Inter"', "sans-serif"],
+        serif: ['"Lora"', "serif"],
         mono: ['"JetBrains Mono"', "monospace"],
       },
       fontSize: {
