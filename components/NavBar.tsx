@@ -9,7 +9,7 @@ const categories = [
   { name: "Fashion", slug: "fashion" },
   { name: "Food", slug: "food" },
   { name: "Lifestyle", slug: "lifestyle" },
-  { name: "News", slug: "news" },
+  { name: "Wars", slug: "wars" },
 ];
 
 export default function NavBar() {

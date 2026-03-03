@@ -50,6 +50,7 @@ export default async function CategoryPage({
     "fashion": "cat-fashion",
     "food": "cat-food",
     "lifestyle": "cat-lifestyle",
+    "wars": "cat-wars",
   };
   let articles;
   if (categoryMap[params.id]) {
@@ -65,7 +66,7 @@ export default async function CategoryPage({
     "fashion":   { name: "Fashion",    color: "#be185d", description: "Stories in fashion" },
     "food":      { name: "Food",       color: "#16a34a", description: "Stories in food" },
     "lifestyle": { name: "Lifestyle",  color: "#7c3aed", description: "Stories in lifestyle" },
-    "news":      { name: "News",       color: "#dc2626", description: "Stories in news" },
+    "wars":      { name: "Wars",        color: "#dc2626", description: "Conflict, power & the world at war" },
   };
 
   const [sanityCategory, mustReads] = await Promise.all([
