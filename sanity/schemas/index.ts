@@ -13,3 +13,4 @@ export const schemaTypes = [
   glossary,
   mustRead,
 ];
+// Schema rebuild
