@@ -26,10 +26,10 @@ export default function Header() {
           A Digital Magazine
         </div>
         <h1 className="font-display font-black text-masthead text-ink group-hover:tracking-wide transition-all duration-400">
-          THE LUCID<span className="text-accent">.</span>
+          LOU<span className="text-accent">.</span>
         </h1>
         <div className="font-display italic text-[15px] text-slate mt-3.5">
-          Curiosity, curated.
+          AI, Fashion, Food & Lifestyle
         </div>
       </Link>
 
