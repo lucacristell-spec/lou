@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Libre+Franklin:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ─── BASE ─── */
+::selection {
+  background: #c2402a;
+  color: white;
+}
+
+body {
+  background: #f5f0e8;
+  color: #0a0a0a;
+  font-family: "Libre Franklin", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 400px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeSlideIn 0.7s ease forwards;
+}
+
+.animate-fade-in-d1 { animation-delay: 0.1s; }
+.animate-fade-in-d2 { animation-delay: 0.2s; }
+.animate-fade-in-d3 { animation-delay: 0.3s; }
+.animate-fade-in-d4 { animation-delay: 0.4s; }
+
+.animate-expand {
+  animation: expandDown 0.3s ease forwards;
+}
+
+/* ─── ARTICLE BODY TYPOGRAPHY ─── */
+.article-body p {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #2a2a2a;
+  margin-bottom: 28px;
+}
+
+.article-body p:first-child::first-letter {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  font-weight: 900;
+  float: left;
+  line-height: 0.8;
+  margin-right: 10px;
+  margin-top: 6px;
+  color: #c2402a;
+}
+
+.article-body h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.article-body h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.article-body blockquote {
+  border-left: 3px solid #c2402a;
+  padding-left: 20px;
+  margin: 32px 0;
+  font-style: italic;
+  color: #5a6068;
+}
+
+.article-body a {
+  color: #c2402a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-body img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 24px 0;
+}
+
+/* ─── NAV LINK UNDERLINE EFFECT ─── */
+.nav-underline {
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #c2402a;
+  transition: width 0.3s ease;
+}
+
+.nav-underline:hover::after,
+.nav-underline.active::after {
+  width: 100%;
+}
