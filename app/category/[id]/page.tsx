@@ -48,6 +48,7 @@ export default async function CategoryPage({
     "ai-tech": "cat-ai",
     "business": "cat-business",
     "fashion": "cat-fashion",
+    "food": "cat-food",
   };
   let articles;
   if (categoryMap[params.id]) {
