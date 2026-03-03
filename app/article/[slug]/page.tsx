@@ -131,38 +131,33 @@ export default async function ArticlePage({
       {/* Body */}
       <div className="article-body max-w-[680px] mx-auto px-6 py-12">
         {articleData.body && typeof articleData.body === "string" ? (
-          <div className="prose prose-sm max-w-none">
-            {articleData.body.split("\n\n").map((paragraph: string, idx: number) => (
-              <div key={idx} className="mb-6">
-                {paragraph.startsWith("**") && paragraph.endsWith("**") ? (
-                  <h3 className="text-lg font-bold text-ink mb-3">
+          <div>
+            {articleData.body.split("\n\n").map((paragraph: string, idx: number) => {
+              // Check if it's a header (surrounded by **)
+              if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
+                return (
+                  <h3 key={idx} style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#000", marginBottom: "1rem", marginTop: "1.5rem" }}>
                     {paragraph.replace(/\*\*/g, "")}
                   </h3>
-                ) : paragraph.startsWith("- ") ? (
-                  <ul className="list-disc list-inside space-y-2 text-sm text-slate">
-                    {paragraph
-                      .split("\n")
-                      .filter((line) => line.startsWith("- "))
-                      .map((item, i) => (
-                        <li key={i}>{item.replace("- ", "")}</li>
-                      ))}
-                  </ul>
-                ) : (
-                  <p className="text-base leading-relaxed text-slate">
-                    {idx === 0 ? (
-                      <>
-                        <span className="text-4xl font-bold text-accent float-left mr-2 leading-none">
-                          {paragraph[0]}
-                        </span>
-                        {paragraph.slice(1)}
-                      </>
-                    ) : (
-                      paragraph
-                    )}
-                  </p>
-                )}
-              </div>
-            ))}
+                );
+              }
+              
+              // Regular paragraph
+              return (
+                <p key={idx} style={{ fontSize: "1rem", lineHeight: "1.6", color: "#64748b", marginBottom: "1.5rem" }}>
+                  {idx === 0 ? (
+                    <>
+                      <span style={{ fontSize: "2.25rem", fontWeight: "bold", color: "#f97316", float: "left", marginRight: "0.5rem", lineHeight: "1" }}>
+                        {paragraph[0]}
+                      </span>
+                      {paragraph.slice(1)}
+                    </>
+                  ) : (
+                    paragraph
+                  )}
+                </p>
+              );
+            })}
           </div>
         ) : articleData.body && Array.isArray(articleData.body) ? (
           <PortableText
