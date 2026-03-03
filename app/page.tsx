@@ -10,8 +10,8 @@ import QuoteBanner from "@/components/QuoteBanner";
 import WeeklyGlossary from "@/components/WeeklyGlossary";
 import Newsletter from "@/components/Newsletter";
 
-// Revalidate homepage every 60 seconds for fresh articles
-export const revalidate = 60;
+// Don't cache - always render fresh
+export const revalidate = 0;
 
 export default async function HomePage() {
   const featured = featuredArticles.filter(a => a.featured);

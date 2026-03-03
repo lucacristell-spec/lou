@@ -6,8 +6,8 @@ import { urlFor } from "@/lib/sanity.client";
 import ArticleCard from "@/components/ArticleCard";
 import Newsletter from "@/components/Newsletter";
 
-// Revalidate every 60 seconds for fresh content
-export const revalidate = 60;
+// Don't cache - always render fresh
+export const revalidate = 0;
 
 // Generate static paths for all articles
 export async function generateStaticParams() {
