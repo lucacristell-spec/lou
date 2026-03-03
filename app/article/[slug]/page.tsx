@@ -96,7 +96,7 @@ export default async function ArticlePage({
   return (
     <section className="article-page">
       {/* Hero */}
-      <div className="relative min-h-[380px] flex items-end overflow-hidden">
+      <div className="relative min-h-[380px] flex items-end overflow-hidden" style={{ background: (articleData as any).gradient || "#333" }}>
         <div className="absolute inset-0" style={bgStyle} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-[1]" />
         <div className="relative z-[2] p-10 pb-12 max-w-3xl">
