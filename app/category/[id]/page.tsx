@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { featuredArticles } from "@/lib/articleData";
 import {
   getCategoryBySlug,
   getArticlesByCategory,
@@ -42,9 +43,16 @@ export default async function CategoryPage({
 }: {
   params: { id: string };
 }) {
-  const [category, articles, mustReads] = await Promise.all([
+  // Use hardcoded articles for ai-tech
+  let articles;
+  if (params.id === "ai-tech") {
+    articles = featuredArticles;
+  } else {
+    articles = await getArticlesByCategory(params.id);
+  }
+
+  const [category, mustReads] = await Promise.all([
     getCategoryBySlug(params.id),
-    getArticlesByCategory(params.id),
     getMustReadsByCategory(params.id),
   ]);
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
+import { featuredArticles } from "@/lib/articleData";
 import {
-  getAllArticles,
-  getFeaturedArticles,
   getAllCategories,
   getCurrentGlossary,
 } from "@/lib/sanity.fetch";
@@ -15,9 +14,10 @@ import Newsletter from "@/components/Newsletter";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [featured, articles, categories, glossary] = await Promise.all([
-    getFeaturedArticles(),
-    getAllArticles(),
+  const featured = featuredArticles.filter(a => a.featured);
+  const articles = featuredArticles;
+  
+  const [categories, glossary] = await Promise.all([
     getAllCategories(),
     getCurrentGlossary(),
   ]);

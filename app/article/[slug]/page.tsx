@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
-import { getArticleBySlug, getAllArticles } from "@/lib/sanity.fetch";
+import { featuredArticles } from "@/lib/articleData";
 import { urlFor } from "@/lib/sanity.client";
 import ArticleCard from "@/components/ArticleCard";
 import Newsletter from "@/components/Newsletter";
@@ -11,8 +11,7 @@ export const revalidate = 60;
 
 // Generate static paths for all articles
 export async function generateStaticParams() {
-  const articles = await getAllArticles();
-  return articles.map((a: any) => ({ slug: a.slug.current }));
+  return featuredArticles.map((a: any) => ({ slug: a.slug.current }));
 }
 
 // Dynamic metadata
@@ -21,7 +20,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const articleData = await getArticleBySlug(params.slug);
+  const articleData = featuredArticles.find((a: any) => a.slug.current === params.slug);
   if (!articleData) return { title: "Not Found" };
 
   return {
@@ -64,7 +63,7 @@ export default async function ArticlePage({
 }: {
   params: { slug: string };
 }) {
-  const articleData = await getArticleBySlug(params.slug);
+  const articleData = featuredArticles.find((a: any) => a.slug.current === params.slug);
   if (!articleData) notFound();
 
   const category = articleData.category;
