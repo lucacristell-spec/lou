@@ -55,3 +55,4 @@ export default defineConfig({
     types: schemaTypes,
   },
 });
+// Rebuild trigger
