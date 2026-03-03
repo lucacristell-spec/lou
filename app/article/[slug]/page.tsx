@@ -68,25 +68,25 @@ export default async function ArticlePage({
 
   const category = articleData.category;
   
-  // Handle both Sanity image objects and direct URLs
+  // Handle both heroImage (hardcoded) and mainImage (Sanity)
   let bgStyle: any;
-  if (articleData.mainImage) {
-    const imageUrl = typeof articleData.mainImage === "string" 
-      ? articleData.mainImage 
-      : urlFor(articleData.mainImage).width(1600).url();
-    bgStyle = {
-      backgroundImage: `url(${imageUrl})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    };
-  } else if (articleData.heroImage) {
+  if (articleData.heroImage) {
     bgStyle = {
       backgroundImage: `url(${articleData.heroImage})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     };
+  } else if ((articleData as any).mainImage) {
+    const imageUrl = typeof (articleData as any).mainImage === "string" 
+      ? (articleData as any).mainImage 
+      : urlFor((articleData as any).mainImage).width(1600).url();
+    bgStyle = {
+      backgroundImage: `url(${imageUrl})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    };
   } else {
-    bgStyle = { background: articleData.gradient || "linear-gradient(135deg, #1a1a2e, #0f3460)" };
+    bgStyle = { background: (articleData as any).gradient || "linear-gradient(135deg, #1a1a2e, #0f3460)" };
   }
 
   return (
