@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const categories = [
-  { name: "AI & Tech", slug: "ai" },
+  { name: "AI & Tech", slug: "ai-tech" },
   { name: "Business", slug: "business" },
   { name: "Fashion", slug: "fashion" },
   { name: "Food", slug: "food" },
-  { name: "Yoga & Wellness", slug: "yoga" },
-  { name: "Random Facts", slug: "facts" },
+  { name: "Lifestyle", slug: "lifestyle" },
+  { name: "News", slug: "news" },
 ];
 
 export default function NavBar() {

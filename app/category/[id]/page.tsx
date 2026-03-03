@@ -21,13 +21,17 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }) {
-  const category = await getCategoryBySlug(params.id);
-  if (!category) return { title: "Not Found" };
+  try {
+    const category = await getCategoryBySlug(params.id);
+    if (!category) return { title: "Category Not Found" };
 
-  return {
-    title: `${category.name} — The Lucid`,
-    description: category.description || `All ${category.name} stories on The Lucid.`,
-  };
+    return {
+      title: `${category.name} — Lou Magazine`,
+      description: category.description || `All ${category.name} stories on Lou Magazine.`,
+    };
+  } catch (error) {
+    return { title: "Category Not Found" };
+  }
 }
 
 export default async function CategoryPage({
@@ -60,7 +64,7 @@ export default async function CategoryPage({
         )}
         {!category.description && (
           <p className="text-sm text-slate font-display italic">
-            All stories in {category.name.toLowerCase()}
+            Stories in {category.name.toLowerCase()}
           </p>
         )}
       </div>
