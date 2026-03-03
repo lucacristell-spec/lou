@@ -36,6 +36,14 @@ export default function NavBar() {
           {cat.name}
         </Link>
       ))}
+      <Link
+        href="/about"
+        className={`nav-underline hover:text-accent transition-colors ${
+          pathname === "/about" ? "active text-accent" : ""
+        }`}
+      >
+        About
+      </Link>
     </nav>
   );
 }
