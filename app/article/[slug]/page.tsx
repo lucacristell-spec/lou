@@ -72,18 +72,22 @@ export default async function ArticlePage({
   let bgStyle: any;
   if (articleData.heroImage) {
     bgStyle = {
-      backgroundImage: `url(${articleData.heroImage})`,
+      backgroundImage: `url('${articleData.heroImage}')`,
       backgroundSize: "cover",
       backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundColor: "#333",
     };
   } else if ((articleData as any).mainImage) {
     const imageUrl = typeof (articleData as any).mainImage === "string" 
       ? (articleData as any).mainImage 
       : urlFor((articleData as any).mainImage).width(1600).url();
     bgStyle = {
-      backgroundImage: `url(${imageUrl})`,
+      backgroundImage: `url('${imageUrl}')`,
       backgroundSize: "cover",
       backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundColor: "#333",
     };
   } else {
     bgStyle = { background: (articleData as any).gradient || "linear-gradient(135deg, #1a1a2e, #0f3460)" };
