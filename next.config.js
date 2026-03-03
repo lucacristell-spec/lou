@@ -10,14 +10,4 @@ const nextConfig = {
   },
 };
 
-// Enable compression and optimize for mobile
-module.exports = {
-  ...nextConfig,
-  compress: true,
-  productionBrowserSourceMaps: false,
-  swcMinify: true,
-  experimental: {
-    optimizePackageImports: ["@sanity/image-url"],
-  },
-};
-// Rebuild 2
+module.exports = nextConfig;
