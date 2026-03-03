@@ -11,6 +11,9 @@ import QuoteBanner from "@/components/QuoteBanner";
 import WeeklyGlossary from "@/components/WeeklyGlossary";
 import Newsletter from "@/components/Newsletter";
 
+// Revalidate homepage every 60 seconds for fresh articles
+export const revalidate = 60;
+
 export default async function HomePage() {
   const [featured, articles, categories, glossary] = await Promise.all([
     getFeaturedArticles(),

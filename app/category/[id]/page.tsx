@@ -9,6 +9,9 @@ import ArticleCard from "@/components/ArticleCard";
 import MustReadLibrary from "@/components/MustReadLibrary";
 import Newsletter from "@/components/Newsletter";
 
+// Revalidate category pages every 60 seconds for fresh content
+export const revalidate = 60;
+
 // Generate static paths
 export async function generateStaticParams() {
   const categories = await getAllCategories();
