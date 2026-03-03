@@ -29,8 +29,14 @@ export default function HeroSection({ featured }: HeroSectionProps) {
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
           />
+        ) : main.heroImage ? (
+          <img
+            src={main.heroImage}
+            alt={main.title}
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate to-slate/50" />
+          <div className="absolute inset-0" style={{ background: main.gradient || "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)" }} />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
         <div className="relative z-10 p-8 flex flex-col justify-end h-full">
