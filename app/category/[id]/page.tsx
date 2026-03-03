@@ -47,6 +47,7 @@ export default async function CategoryPage({
   const categoryMap: Record<string, string> = {
     "ai-tech": "cat-ai",
     "business": "cat-business",
+    "fashion": "cat-fashion",
   };
   let articles;
   if (categoryMap[params.id]) {
