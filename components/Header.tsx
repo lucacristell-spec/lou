@@ -11,7 +11,7 @@ export default function Header() {
           <Link href="/" className="hover:text-accent transition-colors">
             Subscribe
           </Link>
-          <Link href="/" className="hover:text-accent transition-colors">
+          <Link href="/about" className="hover:text-accent transition-colors">
             About
           </Link>
           <Link href="/" className="hover:text-accent transition-colors">
