@@ -133,7 +133,16 @@ export default async function ArticlePage({
                   </ul>
                 ) : (
                   <p className="text-base leading-relaxed text-slate">
-                    {paragraph}
+                    {idx === 0 ? (
+                      <>
+                        <span className="text-4xl font-bold text-accent float-left mr-2 leading-none">
+                          {paragraph[0]}
+                        </span>
+                        {paragraph.slice(1)}
+                      </>
+                    ) : (
+                      paragraph
+                    )}
                   </p>
                 )}
               </div>
