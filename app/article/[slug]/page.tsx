@@ -193,23 +193,6 @@ export default async function ArticlePage({
         )}
       </div>
 
-      {/* Related Articles */}
-      {articleData.related?.length > 0 && (
-        <div className="max-w-4xl mx-auto px-6 mt-12">
-          <div className="flex items-center gap-5 pb-5">
-            <h2 className="font-display text-sm font-bold tracking-widest uppercase whitespace-nowrap">
-              Keep Reading
-            </h2>
-            <div className="flex-1 h-px bg-ink/10" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articleData.related.map((rel: any, i: number) => (
-              <ArticleCard key={rel._id} article={rel} index={i} />
-            ))}
-          </div>
-        </div>
-      )}
-
       <div className="mt-12">
         <Newsletter />
       </div>
