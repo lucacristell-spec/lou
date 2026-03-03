@@ -114,7 +114,32 @@ export default async function ArticlePage({
 
       {/* Body */}
       <div className="article-body max-w-[680px] mx-auto px-6 py-12">
-        {article.body && (
+        {article.body && typeof article.body === "string" ? (
+          <div className="prose prose-sm max-w-none">
+            {article.body.split("\n\n").map((paragraph: string, idx: number) => (
+              <div key={idx} className="mb-6">
+                {paragraph.startsWith("**") && paragraph.endsWith("**") ? (
+                  <h3 className="text-lg font-bold text-ink mb-3">
+                    {paragraph.replace(/\*\*/g, "")}
+                  </h3>
+                ) : paragraph.startsWith("- ") ? (
+                  <ul className="list-disc list-inside space-y-2 text-sm text-slate">
+                    {paragraph
+                      .split("\n")
+                      .filter((line) => line.startsWith("- "))
+                      .map((item, i) => (
+                        <li key={i}>{item.replace("- ", "")}</li>
+                      ))}
+                  </ul>
+                ) : (
+                  <p className="text-base leading-relaxed text-slate">
+                    {paragraph}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : article.body && Array.isArray(article.body) ? (
           <PortableText
             value={article.body}
             components={portableTextComponents}
