@@ -26,13 +26,10 @@ export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : article.heroImage ? (
-          <Image
+          <img
             src={article.heroImage}
             alt={article.title}
-            fill
-            unoptimized
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
           <div
