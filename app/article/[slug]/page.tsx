@@ -97,7 +97,13 @@ export default async function ArticlePage({
     <section className="article-page">
       {/* Hero */}
       <div className="relative min-h-[380px] flex items-end overflow-hidden" style={{ background: (articleData as any).gradient || "#333" }}>
-        <div className="absolute inset-0" style={bgStyle} />
+        {articleData.heroImage && (
+          <img 
+            src={articleData.heroImage} 
+            alt={articleData.title}
+            style={{ position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-[1]" />
         <div className="relative z-[2] p-10 pb-12 max-w-3xl">
           <div
